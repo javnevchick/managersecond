@@ -7,11 +7,17 @@
 <body>
 <h1>Выберите действие</h1>
 <p><form th:action="@{/create-application}" method="post">
-    <input type="submit" value="Создать заявку">
+    <input type="submit" value="Создать заявку" id="createApplications">
     </form></p>
-    <!--<p><form><input type="submit" value="Вывести список клиентов" id="showUsers"></form></p>
-    <p><form><input type="submit" value="Вывести список заявок" id="showApplications"></form></p>
-    <p><form><input type="submit" value="Вывести список договоров" id="showAgreements"></form></p>-->
+<p><form th:action="@{/clients}" method="post">
+    <input type="submit" value="Вывести список клиентов" id="showUsers">
+    </form></p>
+<p><form th:action="@{/applications}" method="post">
+    <input type="submit" value="Вывести список заявок" id="showApplications">
+    </form></p>
+<p><form th:action="@{/agreements}" method="post">
+    <input type="submit" value="Вывести список договоров" id="showAgreements">
+    </form></p>
    <!-- <form>
         <p>Поиск клиента</p>
         <div>

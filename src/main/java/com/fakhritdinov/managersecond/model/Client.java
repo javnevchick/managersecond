@@ -13,7 +13,7 @@ public class Client {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @Column(name = "name")
     private String name;
@@ -28,6 +28,6 @@ public class Client {
     @Column(name = "employment")
     private String employment;
     @Column(name = "desired_loan_amount")
-    private int desiredLoanAmount;
+    private Integer desiredLoanAmount;
 
 }

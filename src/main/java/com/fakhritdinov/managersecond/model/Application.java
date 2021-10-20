@@ -13,7 +13,7 @@ public class Application {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     @Column(name = "name")
     private String name;
     @Column(name = "passport")
@@ -29,13 +29,15 @@ public class Application {
     @Column(name = "desired_loan_amount")
     private int desiredLoanAmount;
     @Column(name = "approval")
-    private int approvalInt;
+    private String approval;
     @Column(name = "loan_maturity")
     private int loanMaturity;
     @Column(name = "approved_loan_amount")
     private int approvedLoanAmount;
     @Column(name = "date_of_approval")
     private LocalDate dateOfApproval;
+    @Column(name = "client_idclient")
+    private Integer foreignKeyClient;
 
 
     public Application() {
@@ -43,6 +45,7 @@ public class Application {
     }
 
     public Application(Client client) {
+
         name = client.getName();
         passport = client.getPassport();
         maritalStatus = client.getMaritalStatus();
@@ -53,9 +56,9 @@ public class Application {
 
         double a = Math.random();
         if(a < 0.5) {
-            approvalInt = 0;
+            approval = "Не одобрено";
         } else {
-            approvalInt = 1;
+            approval = "Одобрено";
 
             while (true) {
                 int b = (int)(Math.random() * 100);
@@ -72,5 +75,7 @@ public class Application {
 
             dateOfApproval = LocalDate.now();
         }
+
+        foreignKeyClient = client.getId();
     }
 }

@@ -13,7 +13,7 @@ public class Agreement {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     @Column(name = "name")
     private String name;
     @Column(name = "passport")
@@ -25,11 +25,15 @@ public class Agreement {
     @Column(name = "date_of_approval")
     private LocalDate dateOfApproval;
     @Column(name = "sign")
-    private boolean sign;
+    private String sign;
     @Column(name = "date_of_sign")
     private LocalDate dateOfSign;
     @Column(name = "date_of_agreement")
     private LocalDate dateOfAgreement;
+    @Column(name = "application_client_idclient")
+    private Integer foreignKeyClient;
+    @Column(name = "application_idapplication")
+    private Integer foreignKeyApplication;
 
     public Agreement() {
 
@@ -42,5 +46,7 @@ public class Agreement {
         loanAmount = application.getApprovedLoanAmount();
         dateOfApproval = application.getDateOfApproval();
         dateOfAgreement = LocalDate.now();
+        foreignKeyClient = application.getForeignKeyClient();
+        foreignKeyApplication = application.getId();
     }
 }

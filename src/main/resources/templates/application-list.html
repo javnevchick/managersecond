@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Список заявок</title>
+</head>
+<body>
+<div th:switch="${applications}">
+    <h2 th:case="null">Заявок пока нет</h2>
+    <div th:case="*">
+        <h2>Заявки клиентов</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>ФИО</th>
+                <th>Статус одобрения</th>
+            </tr>
+            </thead>
+            <tbidy>
+                <tr th:each="application : ${applications}">
+                    <td th:text="${application.id}"></td>
+                    <td th:text="${application.name}"></td>
+                    <td th:text="${application.approval}"></td>
+                </tr>
+            </tbidy>
+        </table>
+    </div>
+    <p><a href="/">Назад</a></p>
+</div>
+</body>
+</html>
