@@ -8,7 +8,6 @@ import javax.persistence.*;
 @Data
 @Entity
 @Table(name = "client")
-@org.hibernate.annotations.Table(appliesTo = "client")
 public class Client {
 
     @Id

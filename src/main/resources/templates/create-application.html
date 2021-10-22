@@ -6,23 +6,24 @@
 </head>
 <body>
 <h1>Оформление заявки</h1>
-<form action="/" method="post">
+<form action="#" th:action="@{/create-client-and-application}" th:object="${client}" method="post">
     <label for="name">Введите фамилию, имя и отчество</label>
-    <input type="text"  id="name" placeholder="ФИО">
+    <input type="text" th:field="*{name}" id="name" placeholder="ФИО">
     <label for="passport">Паспортные данные</label>
-    <input type="text" id="passport" placeholder="Паспортные данные">
+    <input type="text" th:field="*{passport}" id="passport" placeholder="Паспортные данные">
     <label for="maritalStatus">Семейное положение</label>
-    <input type="text" id="maritalStatus" placeholder="Семейное положение">
+    <input type="text" th:field="*{maritalStatus}" id="maritalStatus" placeholder="Семейное положение">
     <label for="adress">Адрес прописки</label>
-    <input type="text" id="adress" placeholder="Адрес прописки">
+    <input type="text" th:field="*{adress}" id="adress" placeholder="Адрес прописки">
     <label for="contactNumber">Контактный телефон</label>
-    <input type="text" id="contactNumber" placeholder="Контактный телефон">
+    <input type="text" th:field="*{contactNumber}" id="contactNumber" placeholder="Контактный телефон">
     <label for="employment">Сведения о занятости</label>
-    <!--<p><textarea th:field="*{employment}" name="employment" id="employment" placeholder="Сведения о занятости"></textarea></p>-->
-    <input type="text" id="employment" placeholder="Сведения о занятости">
+    <p><textarea th:field="*{employment}" name="employment" id="employment" rows="10" cols="150" placeholder="Сведения о занятости"></textarea></p>
+    <!--<input type="text" th:field="*{employment}" id="employment" placeholder="Сведения о занятости">-->
     <label for="desiredLoanAmount">Сумма желаемого кредита</label>
-    <input type="number" id="desiredLoanAmount" placeholder="Сумма желаемого кредита">
+    <input type="number" th:field="*{desiredLoanAmount}" id="desiredLoanAmount" placeholder="Сумма желаемого кредита">
     <input type="submit" value="Оформить">
 </form>
+<p><a href="/">Назад</a></p>
 </body>
 </html>

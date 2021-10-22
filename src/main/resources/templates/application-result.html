@@ -1,12 +1,40 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:swith="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Решение о заявке</title>
 </head>
 <body>
 <h1>Решение</h1>
-<br>
+<br><br><br>
+<h2>Клиент</h2>
+<br><br>
+<p>ФИО</p>
 
+
+<!-- При выполнении следующего кода пограмма выдаёт ошибку: Property or field 'name' cannot be found on null
+    Либо объект applicate не инициализируется, либо проблема в связке объекта с html-разметкой.
+
+<p th:text="${applicate.name}"></p>
+<br>
+<p>Запрашивает сумму</p>
+<p th:text="${applicate.desiredLoanAmount}"></p>
+<br>
+<div></div>
+<p th:text="${applicate.name}"></p>
+<br>
+<p>Заявка</p>
+<p th:text="${applicate.approve}"></p>
+<br>
+<p>Одобренная сумма</p>
+<p th:text="${applicate.approvedLoanAmount}"></p>
+<br>
+<p>Сроком на (количество дней)</p>
+<p th:text="${applicate.loanMaturity}"></p>
+<br>-->
+<form th:action="@{/create-agreement}" method="get">
+    <p><input type="submit" value="Создать договор" name="createAgreementInputName" ></p>
+</form>
+<p><a href="/">На главную страницу</a></p>
 </body>
 </html>

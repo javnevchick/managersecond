@@ -6,5 +6,16 @@
 </head>
 <body>
 <h1>Договор</h1>
+<div th:switch="${agreement}">
+    <h2 th:case="null">Договоров пока нет</h2>
+    <div th:case="*">
+        <p>Клиент</p>
+        <p th:text="${agreement.name}"></p>
+    </div>
+
+    <div th:swith="${agreement.approve}">
+    <input th:case="Одобрен" type="submit" th:action="@{/get-sign/{id}(id=${agreement.id})}" value="Подписать договор">
+    </div>
+</div>
 </body>
 </html>

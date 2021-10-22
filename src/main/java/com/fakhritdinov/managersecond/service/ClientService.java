@@ -4,6 +4,8 @@ import com.fakhritdinov.managersecond.model.Client;
 import com.fakhritdinov.managersecond.repositiry.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -39,4 +41,7 @@ public class ClientService {
     public Client saveClient(Client client) {
        return clientRepository.save(client);
     }
+
+    /*@Query("select c from Client c where c.name = :name")
+    Client findByName(@Param("name") String name);*/
 }

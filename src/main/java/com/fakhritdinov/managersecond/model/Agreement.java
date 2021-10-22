@@ -8,7 +8,6 @@ import java.time.LocalDate;
 @Data
 @Entity
 @Table(name = "agreement")
-@org.hibernate.annotations.Table(appliesTo = "agreement")
 public class Agreement {
 
     @Id
@@ -23,16 +22,14 @@ public class Agreement {
     @Column(name = "loan_amount")
     private int loanAmount;
     @Column(name = "date_of_approval")
-    private LocalDate dateOfApproval;
+    private java.sql.Date dateOfApproval;
     @Column(name = "sign")
     private String sign;
     @Column(name = "date_of_sign")
-    private LocalDate dateOfSign;
+    private java.sql.Date dateOfSign;
     @Column(name = "date_of_agreement")
-    private LocalDate dateOfAgreement;
-    @Column(name = "application_client_idclient")
-    private Integer foreignKeyClient;
-    @Column(name = "application_idapplication")
+    private java.sql.Date dateOfAgreement;
+    @Column(name = "application_id")
     private Integer foreignKeyApplication;
 
     public Agreement() {
@@ -45,8 +42,18 @@ public class Agreement {
         loanMaturity = application.getLoanMaturity();
         loanAmount = application.getApprovedLoanAmount();
         dateOfApproval = application.getDateOfApproval();
-        dateOfAgreement = LocalDate.now();
-        foreignKeyClient = application.getForeignKeyClient();
+
+        sign = "Не подписан";
+
+        LocalDate date = LocalDate.now();
+        dateOfAgreement = java.sql.Date.valueOf(date);
+
         foreignKeyApplication = application.getId();
+    }
+
+    public void setSign() {
+        sign = "Подписан";
+        LocalDate date = LocalDate.now();
+        dateOfSign = java.sql.Date.valueOf(date);
     }
 }

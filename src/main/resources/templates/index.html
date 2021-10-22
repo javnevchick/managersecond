@@ -6,19 +6,20 @@
 </head>
 <body>
 <h1>Выберите действие</h1>
-<p><form th:action="@{/create-application}" method="post">
+<p><form th:action="@{/create-application}" method="get">
     <input type="submit" value="Создать заявку" id="createApplications">
     </form></p>
 <p><form th:action="@{/clients}" method="post">
     <input type="submit" value="Вывести список клиентов" id="showUsers">
     </form></p>
-<p><form th:action="@{/applications}" method="post">
+<p><form th:action="@{/applications}" method="get">
     <input type="submit" value="Вывести список заявок" id="showApplications">
     </form></p>
 <p><form th:action="@{/agreements}" method="post">
     <input type="submit" value="Вывести список договоров" id="showAgreements">
     </form></p>
-   <!-- <form>
+<br><br><br>
+    <form th:action="search-client" method="get">
         <p>Поиск клиента</p>
         <div>
             <input type="radio" id="searchChoice1"
@@ -30,11 +31,11 @@
             <input type="radio" id="searchChoice3"
                    name="contact" value="contactNumber">
             <label for="searchChoice3">Номер телефона</label>
-            <input type="text" th:field="" id="search" placeholder="Введите данные для поиска">
+            <input type="text" name="field" id="search" placeholder="Введите данные для поиска">
             <div>
                 <button type="submit">Поиск</button>
             </div>
         </div>
-    </form>-->
+    </form>
 </body>
 </html>

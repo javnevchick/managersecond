@@ -25,23 +25,18 @@ public class CreateApplicationController {
         this.clientService = clientService;
     }
 
-    @PostMapping("/create-application")
-    public String createApplication() {
-        return "create-application";
-    }
 
-
-    @GetMapping("/create-client-and-application")
-    public String createClientForm(Client client) {
+    @GetMapping("/create-application")
+    public String createClientForm(Client client, Model model) {
+        model.addAttribute("client", client);
         return "create-application";
     }
 
     @PostMapping("/create-client-and-application")
     public String createClient(Client client) {
         clientService.saveClient(client);
-        Application application = new Application(client);
-        applicationService.saveApplication(application);
-        return "redirect:/application-result";
+        applicationService.saveApplicationByClient(client);
+        return "application-result";
     }
 
 }

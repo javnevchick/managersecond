@@ -1,14 +1,16 @@
 package com.fakhritdinov.managersecond.model;
 
 import lombok.Data;
+import lombok.ToString;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.time.LocalDate;
 
 @Data
 @Entity
 @Table(name = "application")
-@org.hibernate.annotations.Table(appliesTo = "application")
+@ToString
 public class Application {
 
     @Id
@@ -35,8 +37,8 @@ public class Application {
     @Column(name = "approved_loan_amount")
     private int approvedLoanAmount;
     @Column(name = "date_of_approval")
-    private LocalDate dateOfApproval;
-    @Column(name = "client_idclient")
+    private java.sql.Date dateOfApproval;
+    @Column(name = "client_id")
     private Integer foreignKeyClient;
 
 
@@ -61,8 +63,8 @@ public class Application {
             approval = "Одобрено";
 
             while (true) {
-                int b = (int)(Math.random() * 100);
-                if(b > 0 && b < 366) {
+                int b = (int)(Math.random() * 365);
+                if(b > 30) {
                     loanMaturity = b;
                     break;
                 }
@@ -73,9 +75,47 @@ public class Application {
                 approvedLoanAmount = desiredLoanAmount / c;
             } else { approvedLoanAmount = desiredLoanAmount; }
 
-            dateOfApproval = LocalDate.now();
+            LocalDate date = LocalDate.now();
+            dateOfApproval = java.sql.Date.valueOf(date);
         }
 
         foreignKeyClient = client.getId();
+    }
+
+    public Application(String name, String passport, String maritalStatus, String adress, String
+                       contactNumber, String employment, Integer desiredLoanAmount) {
+        this.name = name;
+        this.passport = passport;
+        this.maritalStatus = maritalStatus;
+        this.adress = adress;
+        this.contactNumber = contactNumber;
+        this.employment = employment;
+        this.desiredLoanAmount = desiredLoanAmount;
+
+        double a = Math.random();
+        if(a < 0.5) {
+            this.approval = "Не одобрено";
+        } else {
+            this.approval = "Одобрено";
+
+            while (true) {
+                int b = (int)(Math.random() * 365);
+                if(b > 30) {
+                    this.loanMaturity = b;
+                    break;
+                }
+            }
+
+            int c = (int)(Math.random() * 10);
+            if(c != 0) {
+                this.approvedLoanAmount = this.desiredLoanAmount / c;
+            } else { this.approvedLoanAmount = this.desiredLoanAmount; }
+
+            LocalDate date = LocalDate.now();
+            this.dateOfApproval = java.sql.Date.valueOf(date);
+        }
+
+        this.foreignKeyClient = 500;
+
     }
 }

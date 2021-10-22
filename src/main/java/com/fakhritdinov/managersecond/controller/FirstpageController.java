@@ -16,4 +16,9 @@ public class FirstpageController {
         return "index";
     }
 
+    @GetMapping("/search-client")
+    public String searchClient(Client client, Model model) {
+        model.addAttribute("client", client);
+        return "index";
+    }
 }

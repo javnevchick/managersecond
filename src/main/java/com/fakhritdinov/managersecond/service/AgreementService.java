@@ -22,4 +22,12 @@ public class AgreementService {
     public List<Agreement> findAll() {
         return agreementRepository.findAll();
     }
+
+    public Agreement findLast() {
+        return agreementRepository.getLast();
+    }
+
+    public void saveAgreement(Agreement agreement) {
+        agreementRepository.save(agreement);
+    }
 }
