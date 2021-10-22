@@ -33,9 +33,10 @@ public class CreateApplicationController {
     }
 
     @PostMapping("/create-client-and-application")
-    public String createClient(Client client) {
+    public String createClient(Client client, Model model) {
         clientService.saveClient(client);
-        applicationService.saveApplicationByClient(client);
+        Application application = applicationService.saveApplicationByClient(client);
+        model.addAttribute("applicate", application);
         return "application-result";
     }
 

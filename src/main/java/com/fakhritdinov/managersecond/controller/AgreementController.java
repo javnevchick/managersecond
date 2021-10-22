@@ -32,6 +32,7 @@ public class AgreementController {
 
     @GetMapping("/create-agreement")
     public String createAgreement(Model model) {
+
         Agreement agreement = new Agreement(applicationService.findLast());
         agreementService.saveAgreement(agreement);
         model.addAttribute("agreement", agreement);
