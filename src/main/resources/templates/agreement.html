@@ -6,16 +6,25 @@
 </head>
 <body>
 <h1>Договор</h1>
-<div th:switch="${agreement}">
-    <h2 th:case="null">Договоров пока нет</h2>
-    <div th:case="*">
-        <p>Клиент</p>
-        <p th:text="${agreement.name}"></p>
-    </div>
+<br><br><br>
+<p>От</p>
+<p th:text="${agreement.dateOfAgreement}"></p>
+<br>
+<p>Клиент</p>
+<p th:text="${agreement.name}"></p>
+<br>
+<p>Паспорт</p>
+<p th:text="${agreement.passport}"></p>
+<br>
+<p>Сумма кредита</p>
+<p th:text="${agreement.loanAmount}"></p>
+<br>
+<p>Сроком на</p>
+<p th:text="${agreement.loanMaturity}"></p>
+<br>
 
-    <div th:swith="${agreement.approve}">
-    <input th:case="Одобрен" type="submit" th:action="@{/get-sign/{id}(id=${agreement.id})}" value="Подписать договор">
-    </div>
-</div>
+<br><br><br>
+<br><br>
+<a th:href="@{do-sign}" method="get">Подписать</a>
 </body>
 </html>

@@ -35,7 +35,7 @@ public class CreateApplicationController {
     @PostMapping("/create-client-and-application")
     public String createClient(Client client, Model model) {
         clientService.saveClient(client);
-        Application application = applicationService.saveApplicationByClient(client);
+        Application application = applicationService.saveApplicationByClient(client); // Сохраняем заявку и создаём объект для добавления в шаблон (?)
         model.addAttribute("applicate", application);
         return "application-result";
     }

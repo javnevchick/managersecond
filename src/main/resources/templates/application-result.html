@@ -11,35 +11,31 @@
 <br><br>
 <p>ФИО</p>
 
-<p th:text="${applicate.name}"></p>
+<p th:text="${applicate.name}">Проблемы с отображением имени</p>
 <!-- При выполнении следующего кода пограмма выдаёт ошибку: Property or field 'name' cannot be found on null
     Либо объект applicate не инициализируется, либо проблема в связке объекта с html-разметкой. -->
 
 
 <br>
 <p>Запрашивает сумму</p>
-<p th:text="${applicate.desiredLoanAmount}"></p>
+<p th:text="${applicate.desiredLoanAmount}">Проблемы с отображением запрашиваемой суммы</p>
 <br>
-<div></div>
-<p th:text="${applicate.name}"></p>
 <br>
-<p>Заявка</p>
-<p th:text="${applicate.approval}"></p>
+<p th:if="${applicate.approval} == true">Заявка одобрена</p>
 <br>
-<p>Одобренная сумма</p>
-<p th:text="${applicate.approvedLoanAmount}"></p>
-<br>
-<p>Сроком на (количество дней)</p>
-<p th:text="${applicate.loanMaturity}"></p>
-<br>
-<div th:swith="${applicate.approval}" ${applicate.approval}? #{true} : #{false}>
-    <div th:case="Одобрено">
-        <form th:action="@{/create-agreement}" method="get">
-            <p><input type="submit" value="Создать договор" name="createAgreementInputName" ></p>
-        </form>
-    </div>
-    <p th:case="Не одобрено"></p>
+<div th:if="${applicate.approval} == true">
+    <p>Одобренная сумма</p>
+    <p th:text="${applicate.approvedLoanAmount}"></p>
+    <br>
+    <p>Сроком на (количество дней)</p>
+    <p th:text="${applicate.loanMaturity}"></p>
+    <br><br>
+    <form th:action="@{/create-agreement}" method="get">
+        <p><input type="submit" value="Создать договор" name="createAgreementInputName" ></p>
+    </form>
+    <br>
 </div>
+<p th:if="${applicate.approval} == false">Заявка не одобрена</p>
 <br><br>
 <p><a href="/">На главную страницу</a></p>
 </body>

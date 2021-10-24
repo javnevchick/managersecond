@@ -31,7 +31,7 @@ public class Application {
     @Column(name = "desired_loan_amount")
     private int desiredLoanAmount;
     @Column(name = "approval")
-    private String approval;
+    private boolean approval;
     @Column(name = "loan_maturity")
     private int loanMaturity;
     @Column(name = "approved_loan_amount")
@@ -58,9 +58,9 @@ public class Application {
 
         double a = Math.random();
         if(a < 0.5) {
-            approval = "Не одобрено";
+            approval = false;
         } else {
-            approval = "Одобрено";
+            approval = true;
 
             while (true) {
                 int b = (int)(Math.random() * 365);
@@ -82,6 +82,7 @@ public class Application {
         foreignKeyClient = client.getId();
     }
 
+    // Этот конструктор сделан для теста
     public Application(String name, String passport, String maritalStatus, String adress, String
                        contactNumber, String employment, Integer desiredLoanAmount) {
         this.name = name;
@@ -94,9 +95,9 @@ public class Application {
 
         double a = Math.random();
         if(a < 0.5) {
-            this.approval = "Не одобрено";
+            this.approval = false;
         } else {
-            this.approval = "Одобрено";
+            this.approval = true;
 
             while (true) {
                 int b = (int)(Math.random() * 365);

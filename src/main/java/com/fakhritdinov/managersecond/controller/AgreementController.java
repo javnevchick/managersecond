@@ -33,17 +33,17 @@ public class AgreementController {
     @GetMapping("/create-agreement")
     public String createAgreement(Model model) {
 
-        Agreement agreement = new Agreement(applicationService.findLast());
+        Agreement agreement = new Agreement(applicationService.findLast()); // По такому типу сохранить заявку
         agreementService.saveAgreement(agreement);
         model.addAttribute("agreement", agreement);
         return "agreement";
     }
 
-    @PostMapping("/get-sign/{id}")
-    public String getSign(@PathVariable("id") Integer id, Model model) {
-        Agreement agreement = agreementService.findById(id);
+    @GetMapping("/do-sign")
+    public String getSign() {
+        Agreement agreement = agreementService.findLast();
         agreement.setSign();
         agreementService.saveAgreement(agreement);
-        return "/";
+        return "index";
     }
 }
