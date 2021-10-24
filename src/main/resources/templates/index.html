@@ -19,23 +19,48 @@
     <input type="submit" value="Вывести список договоров" id="showAgreements">
     </form></p>
 <br><br><br>
-    <!--<form th:action="/search-client" method="get">
-        <p>Поиск клиента</p>
+<form th:action="@{/search-client}" method="get">
+    <p>Поиск клиента</p>
+    <br>
+    <div>
+        <input type="radio" id="searchChoice1"
+                   th:name="contacte" value="fio">
+        <label for="searchChoice1">ФИО</label>
+        <input type="radio" id="searchChoice2"
+                   th:name="contacte" value="passport">
+        <label for="searchChoice2">Паспорт</label>
+        <input type="radio" id="searchChoice3"
+                   th:name="contacte" value="contactNumber">
+        <label for="searchChoice3">Номер телефона</label><br>
+        <input type="text" th:name="fielde" id="search" placeholder="Введите данные для поиска">
+        <br>
         <div>
-            <input type="radio" id="searchChoice1"
-                   name="contact" value="fio">
-            <label for="searchChoice1">ФИО</label>
-            <input type="radio" id="searchChoice2"
-                   name="contact" value="passport">
-            <label for="searchChoice2">Паспорт</label>
-            <input type="radio" id="searchChoice3"
-                   name="contact" value="contactNumber">
-            <label for="searchChoice3">Номер телефона</label>
-            <input type="text" name="field" id="search" placeholder="Введите данные для поиска">
-            <div>
-                <button type="submit">Поиск</button>
-            </div>
+            <button type="submit">Поиск</button>
         </div>
-    </form>-->
+    </div>
+    <br><br>
+    <div th:switch="${client}">
+    <h2 th:case="null">Такого клиента нет</h2>
+    <div th:case="*">
+        <table>
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>ФИО</th>
+                <th>Телефон</th>
+            </tr>
+            </thead>
+            <tbidy>
+                <tr>
+                <td th:text="${client.id}"></td>
+                <td th:text="${client.name}"></td>
+                <td th:text="${client.contactNumber}"></td>
+                </tr>
+            </tbidy>
+        </table>
+    </div>
+    <p><a href="/">Назад</a></p>
+</div>
+</form>
 </body>
 </html>
